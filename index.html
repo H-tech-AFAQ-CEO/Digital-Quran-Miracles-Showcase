@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miracles of the Qur'an | Read Quran for Peace</title>
+<meta name="description" content="Numerical patterns, ring composition, signs, language, history and predictions in the Qur'an, linked to the Read Quran for Peace reader.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<!--
+HOW TO UPDATE (edit only the <script> block)
+- BASE: your site root. u(): the verse URL pattern, BASE/quran/{slug}#ayah-{surah}-{ayah}.
+- Math: add objects to PAIRS (cat "pair") or FACTS. status "reported" -> change to "verified" once you recount it from your own text.
+- Other themes: add rows to ITEMS with th = ring | sci | hist | pred | ling.
+  Row: {th, t:"Title", ar:"Arabic", tag:"label", body:"text", refs:[[slug, surah, ayah, "label"]]}
+- New theme: add to THEMES and give ITEMS rows the same id.
+- Verify every slug once by clicking its link; edit the slug if your site spells it differently.
+-->
+<style>
+:root{--night:#0b1431;--n2:#111d42;--line:#2a3b72;--gold:#d2ad5e;--g2:#f0d9a0;--teal:#4fb3a5;--paper:#f1e9d2;--mute:#a9b2cf}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1200px 600px at 50% -10%,#1a2c66 0,var(--night) 60%) fixed;color:var(--paper);font:400 16px/1.65 Manrope,system-ui,sans-serif;min-height:100vh}
+a{color:var(--g2)}a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.ar{font-family:Amiri,"Traditional Arabic",serif;direction:rtl}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.bar{border-bottom:1px solid var(--line);background:rgba(11,20,49,.88);backdrop-filter:blur(8px);position:sticky;top:0;z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
+.brand{font:700 18px Amiri,serif;color:var(--g2);text-decoration:none}
+.nav{display:flex;gap:16px;font-size:14px}.nav a{color:var(--mute);text-decoration:none}.nav a:hover{color:var(--g2)}
+.hero{padding:48px 0 12px;text-align:center}
+.hero h1{font:700 clamp(30px,5vw,48px)/1.15 Amiri,serif}
+.lead{max-width:640px;margin:12px auto 0;color:var(--mute)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:26px 0 8px}
+.tabs button,.chips button{background:var(--n2);color:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font:500 14px Manrope,sans-serif;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--gold);color:#241b05;border-color:var(--gold)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chips button{border-radius:10px;padding:6px 14px}.chips button[aria-pressed=true]{border-color:var(--gold);color:var(--g2)}
+.stage{margin:22px 0 0;border:1px solid var(--gold);border-radius:22px;padding:28px 16px 20px;text-align:center;background:linear-gradient(180deg,rgba(210,173,94,.08),rgba(27,47,107,.25))}
+.mirror{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+.w{font:700 clamp(28px,6vw,48px)/1.2 Amiri,serif}.e{color:var(--mute);font-size:14px}
+.n{font:700 clamp(52px,12vw,104px)/1 Amiri,serif;font-variant-numeric:tabular-nums}
+.a .n{color:var(--g2)}.b .n{color:var(--teal)}.eq{font:700 38px Amiri,serif;color:var(--gold)}
+.stage .note{max-width:620px;margin:14px auto 0;color:var(--mute);font-size:15px}
+.picker{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.picker button{background:transparent;color:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font:500 13px Manrope,sans-serif;cursor:pointer}
+.picker button[aria-pressed=true]{background:var(--gold);color:#241b05;border-color:var(--gold)}
+h2{font:700 28px Amiri,serif;color:var(--g2);margin:40px 0 6px}.sub{color:var(--mute);max-width:700px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--n2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card header{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.card h3{font:700 21px Amiri,serif}.badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;color:var(--mute);white-space:nowrap}.badge.v{border-color:var(--teal);color:var(--teal)}
+.big{font:700 26px Amiri,serif;color:var(--g2);margin-bottom:6px}
+.row{display:grid;grid-template-columns:78px 1fr 46px;gap:10px;align-items:center;margin:8px 0}.row .l{font:700 20px Amiri,serif}
+.track{height:10px;background:#0a1230;border-radius:6px;overflow:hidden}.fill{height:100%;width:0;border-radius:6px;background:var(--gold);transition:width 1s cubic-bezier(.2,.7,.2,1)}.row.b .fill{background:var(--teal)}
+.row .c{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.t{color:var(--mute);font-size:14px;margin-top:10px}
+.refs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.refs a{font-size:13px;text-decoration:none;border:1px solid var(--gold);border-radius:8px;padding:3px 10px}.refs a:hover{background:var(--gold);color:#241b05}
+.chart{background:var(--n2);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0;height:320px;position:relative}
+.ring{display:flex;flex-direction:column;align-items:center;gap:8px;margin:18px 0}
+.layer{border:1px solid var(--line);border-radius:12px;background:var(--n2);padding:12px 16px;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-size:14px}
+.layer b{color:var(--g2)}.layer .mid{color:var(--gold);font-weight:700}.layer.core{border-color:var(--gold);text-align:center;display:block}
+.layer .r{text-align:right}
+.method{background:var(--n2);border:1px solid var(--line);border-radius:14px;padding:22px;color:var(--mute);font-size:15px}.method li{margin:8px 0 8px 18px}.method strong{color:var(--paper)}
+.empty{color:var(--mute);padding:16px 0}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 0;color:var(--mute);font-size:14px;text-align:center}
+[hidden]{display:none!important}
+@media(max-width:560px){.mirror{grid-template-columns:1fr;gap:4px}.eq{font-size:28px}.row{grid-template-columns:64px 1fr 40px}.layer{grid-template-columns:1fr}.layer .r{text-align:left}.layer .mid{display:none}.layer{width:100%!important}}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap"><a class="brand" id="home" href="#">Read Quran for Peace</a>
+<nav class="nav" aria-label="Site"><a data-s="/quran" href="#">Quran</a><a data-s="/tafsir" href="#">Tafsir</a><a data-s="/audio" href="#">Audio</a><a href="#method">Method</a></nav></div></div>
+
+<main class="wrap">
+<section class="hero"><h1>Signs to reflect on</h1>
+<p class="lead">Six ways into the Qur'an's depth. Every finding links to its verse in the digital Qur'an, so you can read it in context.</p>
+<div class="tabs" id="tabs" role="tablist" aria-label="Themes"></div></section>
+<div id="panel" role="tabpanel"></div>
+
+<section id="method"><h2>Method and honesty</h2><div class="method"><ul>
+<li><strong>Edition.</strong> Counts follow the Hafs 'an 'Asim text: 114 surahs, 6,236 verses. Other recitations and counting rules can differ.</li>
+<li><strong>Exact forms.</strong> A reported count usually refers to one specific written form of a word. State the rule beside every number.</li>
+<li><strong>Status badges.</strong> "Verified" means checked here. "Reported" means widely cited and should be recounted from your own text before it is stated as fact.</li>
+<li><strong>Interpretation.</strong> Ring structures, scientific readings and applied history are scholarly proposals. Readers and scholars differ, and the text stands on its own.</li>
+<li><strong>Left out.</strong> Claims scholars widely reject, such as the "code 19" system, are not included.</li>
+</ul></div></section>
+</main>
+<footer><div class="wrap">Built to work with <a data-s="/" href="#">www.readquranforpeace.net</a>. Offered free for the benefit of everyone.</div></footer>
+
+<script>
+const BASE="https://www.readquranforpeace.net";
+const u=r=>`${BASE}/quran/${r[0]}#ayah-${r[1]}-${r[2]}`;
+const THEMES=[["math","Mathematical"],["ring","Ring composition"],["sci","Scientific signs"],["ling","Linguistic"],["hist","Past events"],["pred","Predictions"]];
+
+/* ---- MATHEMATICAL DATA ---- */
+const PAIRS=[
+["الدنيا","Al-Dunya (this world)",115,"الآخرة","Al-Akhira (the hereafter)",115,"reported","Equal in count, counting the definite forms as written.",["al-baqarah",2,201,"2:201 Al-Baqarah"]],
+["الملائكة","Al-Mala'ika (angels)",88,"الشياطين","Al-Shayatin (devils)",88,"reported","Cited as equal when each plural form is counted as written.",["al-baqarah",2,98,"2:98 Al-Baqarah"]],
+["الحياة","Al-Hayat (life)",145,"الموت","Al-Mawt (death)",145,"reported","Cited as equal. Prefixed forms change the total, so state your rule.",["al-mulk",67,2,"67:2 Al-Mulk"]],
+["رجل","Rajul (man)",24,"امرأة","Imra'a (woman)",24,"reported","Singular forms only. One example sits in the longest verse of the Qur'an.",["al-baqarah",2,282,"2:282 Al-Baqarah"]]];
+const FACTS=[
+["يوم","Yawm (day), singular",365,"reported","Cited at 365, the days of a solar year. Plural and dual forms are excluded.",["al-fatiha",1,4,"1:4 Al-Fatiha"]],
+["شهر","Shahr (month), singular",12,"reported","Twelve, matching the months of the year. The verse that names the count is linked.",["at-tawbah",9,36,"9:36 At-Tawbah"]],
+["السور","Surahs in the Qur'an",114,"verified","A structural fact of the standard mushaf.",["al-fatiha",1,1,"Start: Al-Fatiha"]],
+["الآيات","Verses (Hafs numbering)",6236,"verified","Total verses in the standard Hafs count. The chart below sums to this figure.",["al-baqarah",2,286,"2:286 last of Al-Baqarah"]],
+["بسم الله","Basmala occurrences",114,"verified","It opens 113 surahs (not Surah 9) and appears once inside An-Naml, so 114 in all, the number of surahs.",["an-naml",27,30,"27:30 An-Naml"]]];
+const VERSES=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
+
+/* ---- OTHER THEMES ---- */
+const RING=[
+["A","The dream","12:4-6","Fulfilment of the dream","12:99-101"],
+["B","Brothers cast Yusuf out","12:7-18","Brothers return and are forgiven","12:58-98"],
+["C","Yusuf in the household in Egypt","12:19-34","Innocence cleared, rise to office","12:50-57"]];
+const RINGCORE="Prison and the interpretation of dreams (12:35-49), the turning point";
+const ITEMS=[
+{th:"ring",t:"Surah Yusuf as a ring",ar:"سورة يوسف",tag:"Proposed structure",body:"The surah opens with a dream and closes with its fulfilment. Layers between mirror each other around the prison scenes. Verse ranges are approximate; scholars draw the lines differently.",refs:[["yusuf",12,4,"12:4 the dream"],["yusuf",12,100,"12:100 fulfilment"]]},
+{th:"sci",t:"Stages of the human embryo",ar:"ثُمَّ خَلَقْنَا النُّطْفَةَ عَلَقَةً",tag:"Embryology",body:"The verses describe successive stages: a drop, a clinging form, a chewed-like lump, then bones clothed with flesh. Many scholars read this as a sign worth reflecting on.",refs:[["al-muminun",23,12,"23:12-14 Al-Mu'minun"]]},
+{th:"sci",t:"Heavens and earth, joined then parted",ar:"كَانَتَا رَتْقًا فَفَتَقْنَاهُمَا",tag:"Astronomy",body:"Some readers connect this verse with modern accounts of the universe's origin. Others read it more broadly. Treat it as reflection, not as a lab claim.",refs:[["al-anbiya",21,30,"21:30 Al-Anbiya"]]},
+{th:"sci",t:"A universe being expanded",ar:"وَإِنَّا لَمُوسِعُونَ",tag:"Astronomy",body:"The word musi'un is read by some as 'expanding' and by others as 'having great capacity'. Both readings appear in classical and modern commentary.",refs:[["adh-dhariyat",51,47,"51:47 Adh-Dhariyat"]]},
+{th:"sci",t:"Mountains as pegs",ar:"وَالْجِبَالَ أَوْتَادًا",tag:"Geology",body:"Mountains are described as pegs that steady the earth. Some link this to deep 'roots' beneath mountain ranges; the verse itself is a short image.",refs:[["an-naba",78,6,"78:6-7 An-Naba"]]},
+{th:"ling",t:"Ar-Rahman's refrain",ar:"فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ",tag:"Refrain, 31 times",body:"One question repeats through the surah, addressed to humans and jinn. It turns a list of blessings into a steady heartbeat.",refs:[["ar-rahman",55,13,"55:13 first refrain"]]},
+{th:"ling",t:"Shifting the speaker",ar:"إِيَّاكَ نَعْبُدُ",tag:"Iltifat",body:"Al-Fatiha moves from speaking about God ('He') to speaking to Him ('You alone we worship'). Arabic rhetoric calls this a shift of person; it makes the worshipper step into the presence.",refs:[["al-fatiha",1,5,"1:5 Al-Fatiha"]]},
+{th:"ling",t:"Rhyme that carries meaning",ar:"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ",tag:"Refrain, 4 times",body:"Surah Al-Qamar repeats one verse four times after accounts of earlier peoples. The rhyme and repetition make it easy to remember.",refs:[["al-qamar",54,17,"54:17 Al-Qamar"]]},
+{th:"hist",t:"The people of Thamud",ar:"وَتَنْحِتُونَ مِنَ الْجِبَالِ بُيُوتًا",tag:"Archaeology",body:"The Qur'an describes a people who carved homes into mountains. Rock-cut tombs and dwellings survive at Hegra (Mada'in Salih) in Arabia.",refs:[["al-araf",7,74,"7:74 Al-A'raf"]]},
+{th:"hist",t:"The Year of the Elephant",ar:"أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ",tag:"Recorded event",body:"The surah recalls the army of Abraha that marched on Mecca. The event was well known to the first listeners, who lived within living memory of it.",refs:[["al-fil",105,1,"105:1-5 Al-Fil"]]},
+{th:"hist",t:"A Pharaoh's body as a sign",ar:"فَالْيَوْمَ نُنَجِّيكَ بِبَدَنِكَ",tag:"Egyptology",body:"The verse speaks of Pharaoh's body being preserved as a sign. Egypt's royal mummies are on display today; which Pharaoh is meant is debated.",refs:[["yunus",10,92,"10:92 Yunus"]]},
+{th:"pred",t:"The Romans will prevail",ar:"غُلِبَتِ الرُّومُ",tag:"Fulfilled",body:"Revealed after a Byzantine defeat by Persia, the verses say the Romans will win within a few years. Byzantine victories followed in the 620s.",refs:[["ar-rum",30,2,"30:2-4 Ar-Rum"]]},
+{th:"pred",t:"Entering the Sacred Mosque in safety",ar:"لَتَدْخُلُنَّ الْمَسْجِدَ الْحَرَامَ",tag:"Fulfilled",body:"Revealed around the treaty of Hudaybiyyah, it promised a peaceful return to Mecca. The Muslims entered Mecca in 8 AH.",refs:[["al-fath",48,27,"48:27 Al-Fath"]]},
+{th:"pred",t:"Abu Lahab's end",ar:"سَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ",tag:"Fulfilled",body:"The surah says Abu Lahab would not believe. He lived for years afterwards and never accepted Islam.",refs:[["al-masad",111,3,"111:1-5 Al-Masad"]]},
+{th:"pred",t:"The multitude will be routed",ar:"سَيُهْزَمُ الْجَمْعُ",tag:"Fulfilled",body:"A Meccan revelation stated that the enemy host would be defeated. At Badr, a far smaller force won.",refs:[["al-qamar",54,45,"54:45 Al-Qamar"]]}];
+const INTRO={
+ring:["Ring composition","A passage opens, builds to a centre, then retraces its steps in reverse. Here is one worked example."],
+sci:["Select scientific signs","A few verses that readers reflect on in light of modern science. Shown with their range of readings."],
+ling:["Linguistic brilliance","Rhetorical devices and refrains that make the Arabic memorable."],
+hist:["Verified records of past events","Events and places the Qur'an mentions that history or archaeology also records."],
+pred:["Predictions that came true","Statements about the future that were later fulfilled."]};
+
+/* ---- HELPERS ---- */
+const $=id=>document.getElementById(id),fmt=n=>n.toLocaleString("en-US"),reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const links=rs=>rs.map(r=>`<a href="${u(r)}" target="_blank" rel="noopener">${r[3]}</a>`).join("");
+const badge=s=>`<span class="badge ${s==="verified"?"v":""}">${s==="verified"?"Verified":"Reported"}</span>`;
+const bar=(c,a,n,m)=>`<div class="row ${c}"><span class="l ar">${a}</span><div class="track"><div class="fill" data-w="${Math.max(2,n/m*100)}"></div></div><span class="c">${fmt(n)}</span></div>`;
+const grow=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>document.querySelectorAll(".fill").forEach(e=>e.style.width=e.dataset.w+"%")));
+function count(el,to){if(reduce){el.textContent=fmt(to);return}const t0=performance.now();(function s(t){const p=Math.min((t-t0)/900,1);el.textContent=fmt(Math.round(to*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(s)})(t0)}
+let charts=[];
+function chart(id,cfg){const c=$(id);if(!window.Chart){c.parentNode.innerHTML='<p class="empty">The chart library did not load. Check the connection and reload.</p>';return}
+ Chart.defaults.color="#a9b2cf";Chart.defaults.borderColor="#2a3b72";Chart.defaults.font.family="Manrope";charts.push(new Chart(c,cfg))}
+const item=i=>`<article class="card"><header><h3>${i.t}</h3><span class="badge">${i.tag}</span></header><div class="big ar">${i.ar}</div><p class="t">${i.body}</p><div class="refs">${links(i.refs)}</div></article>`;
+
+/* ---- PANELS ---- */
+function math(){
+ $("panel").innerHTML=`<div class="stage" aria-live="polite"><div class="mirror">
+ <div class="a"><div class="w ar" id="w1"></div><div class="e" id="e1"></div><div class="n" id="n1">0</div></div><div class="eq" id="eq">=</div>
+ <div class="b"><div class="w ar" id="w2"></div><div class="e" id="e2"></div><div class="n" id="n2">0</div></div></div>
+ <p class="note" id="nt"></p><div class="picker" id="pk" role="group" aria-label="Choose a pair"></div></div>
+ <h2>Pairs side by side</h2><p class="sub">Each bar pair is drawn from the same dataset as the hero.</p>
+ <div class="chart"><canvas id="c1" aria-label="Bar chart comparing paired word counts"></canvas></div>
+ <h2>Verses in every surah</h2><p class="sub">All 114 surahs in mushaf order. The total is ${fmt(VERSES.reduce((a,b)=>a+b,0))}.</p>
+ <div class="chart"><canvas id="c2" aria-label="Bar chart of verses per surah"></canvas></div>
+ <h2>All findings</h2><div class="chips" id="ch" role="group" aria-label="Filter"></div><div class="grid" id="gr"></div>`;
+ const show=i=>{const p=PAIRS[i];$("w1").textContent=p[0];$("e1").textContent=p[1];$("w2").textContent=p[3];$("e2").textContent=p[4];$("eq").textContent=p[2]===p[5]?"=":"vs";$("nt").textContent=p[7];count($("n1"),p[2]);count($("n2"),p[5]);[...$("pk").children].forEach((b,j)=>b.setAttribute("aria-pressed",j===i))};
+ PAIRS.forEach((p,i)=>{const b=document.createElement("button");b.textContent=p[1].split(" (")[0]+" / "+p[4].split(" (")[0];b.onclick=()=>show(i);$("pk").appendChild(b)});show(0);
+ chart("c1",{type:"bar",data:{labels:PAIRS.map(p=>p[1].split(" (")[0]+" / "+p[4].split(" (")[0]),datasets:[{label:"First term",data:PAIRS.map(p=>p[2]),backgroundColor:"#d2ad5e"},{label:"Second term",data:PAIRS.map(p=>p[5]),backgroundColor:"#4fb3a5"}]},options:{maintainAspectRatio:false,animation:reduce?false:{}}});
+ chart("c2",{type:"bar",data:{labels:VERSES.map((_,i)=>i+1),datasets:[{label:"Verses",data:VERSES,backgroundColor:"#d2ad5e"}]},options:{maintainAspectRatio:false,animation:reduce?false:{},plugins:{legend:{display:false},tooltip:{callbacks:{title:t=>"Surah "+t[0].label}}},scales:{x:{ticks:{maxTicksLimit:19},title:{display:true,text:"Surah number"}}}}});
+ const cat={all:"All",pair:"Mirror pairs",fact:"Counts and structure"};let cur="all";
+ const draw=()=>{let h="";if(cur!=="fact")PAIRS.forEach(p=>{h+=`<article class="card"><header><h3>${p[1].split(" (")[0]} and ${p[4].split(" (")[0]}</h3>${badge(p[6])}</header>${bar("a",p[0],p[2],Math.max(p[2],p[5]))}${bar("b",p[3],p[5],Math.max(p[2],p[5]))}<p class="t">${p[7]}</p><div class="refs">${links([p[8]])}</div></article>`});
+  if(cur!=="pair")FACTS.forEach(f=>{h+=`<article class="card"><header><h3>${f[1]}</h3>${badge(f[3])}</header><div class="big ar">${f[0]}</div><div class="big">${fmt(f[2])}</div><p class="t">${f[4]}</p><div class="refs">${links([f[5]])}</div></article>`});
+  $("gr").innerHTML=h;[...$("ch").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===cur));grow()};
+ Object.entries(cat).forEach(([k,v])=>{const b=document.createElement("button");b.textContent=v;b.dataset.k=k;b.onclick=()=>{cur=k;draw()};$("ch").appendChild(b)});draw();
+}
+function ring(){
+ const w=[100,86,72];
+ $("panel").innerHTML=`<h2>${INTRO.ring[0]}</h2><p class="sub">${INTRO.ring[1]}</p><div class="ring">`+
+ RING.map((r,i)=>`<div class="layer" style="width:${w[i]}%"><div><b>${r[0]}</b> ${r[1]}<br><span class="t">${r[2]}</span></div><span class="mid">&#8596;</span><div class="r"><b>${r[0]}'</b> ${r[3]}<br><span class="t">${r[4]}</span></div></div>`).join("")+
+ `<div class="layer core" style="width:58%"><b>Centre</b><br>${RINGCORE}</div></div><div class="grid">${ITEMS.filter(i=>i.th==="ring").map(item).join("")}</div>`;
+}
+function list(id){
+ const x=INTRO[id];let extra="";
+ $("panel").innerHTML=`<h2>${x[0]}</h2><p class="sub">${x[1]}</p>${id==="ling"?'<div class="chart"><canvas id="c3" aria-label="Refrain counts"></canvas></div>':""}<div class="grid">${ITEMS.filter(i=>i.th===id).map(item).join("")}</div>`;
+ if(id==="ling")chart("c3",{type:"bar",data:{labels:["Ar-Rahman (55)","Al-Mursalat (77)","Al-Qamar (54)"],datasets:[{label:"Times the refrain is repeated",data:[31,10,4],backgroundColor:"#4fb3a5"}]},options:{indexAxis:"y",maintainAspectRatio:false,animation:reduce?false:{}}});
+}
+const VIEW={math,ring,sci:()=>list("sci"),ling:()=>list("ling"),hist:()=>list("hist"),pred:()=>list("pred")};
+function go(id){charts.forEach(c=>c.destroy());charts=[];VIEW[id]();[...$("tabs").children].forEach(b=>b.setAttribute("aria-selected",b.dataset.id===id));history.replaceState(null,"","#"+id)}
+THEMES.forEach(([id,n])=>{const b=document.createElement("button");b.textContent=n;b.dataset.id=id;b.setAttribute("role","tab");b.onclick=()=>go(id);$("tabs").appendChild(b)});
+document.querySelectorAll("[data-s]").forEach(a=>a.href=BASE+a.dataset.s);$("home").href=BASE;
+go(THEMES.some(t=>t[0]===location.hash.slice(1))?location.hash.slice(1):"math");
+</script>
+</body>
+</html>
